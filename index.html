@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan DOM | Konversi Suhu</title>
+    <style>
+        .hasil {
+            display: block;
+            margin-top: 10px;
+            font-family: sans-serif;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <label for="temp">Suhu (Celcius):</label>
+    <input type="number" name="temp" id="temp" placeholder="0" value="40">
+    
+    <div class="hasil">
+        <div id="resReamur"></div>
+        <div id="resKelvin"></div>
+        <div id="resFahrenheit"></div>
+    </div>
+
+    <script>
+        const input = document.getElementById('temp');
+        const displayReamur = document.getElementById('resReamur');
+        const displayKelvin = document.getElementById('resKelvin');
+        const displayFahrenheit = document.getElementById('resFahrenheit');
+
+        function hitungSuhu() {
+            const val = parseFloat(input.value); 
+
+            if (isNaN(val)) {
+                displayReamur.textContent = "";
+                displayKelvin.textContent = "";
+                displayFahrenheit.textContent = "";
+                return;
+            }
+
+            const reamur = 0.8 * val;
+            const kelvin = 273.15 + val;
+            const fahrenheit = 32 + (val * 9 / 5);
+
+            displayReamur.textContent = `Hasil ke Reamur: ${reamur.toFixed(2)} °R`;
+            displayKelvin.textContent = `Hasil ke Kelvin: ${kelvin.toFixed(2)} K`;
+            displayFahrenheit.textContent = `Hasil ke Fahrenheit: ${fahrenheit.toFixed(2)} °F`;
+        }
+
+        hitungSuhu();
+
+        input.addEventListener('input', hitungSuhu);
+    </script>
+</body>
+</html>
